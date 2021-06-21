@@ -1,36 +1,48 @@
-let hours = 1;
-let minutes = 00;
-let seconds = 00;
-document.getElementById("seconds").innerHTML = "AM";
-incrementMinutes();
-incrementHours();
-setInterval(incrementSeconds, 1000);
-setInterval(incrementMinutes, 1000 * 60);
-setInterval(incrementHours, 1000 * 3600);
+let hours = 11;
+let minutes = 58;
+let seconds = 55;
+document.getElementById("typography").innerHTML = "AM";
 
-function incrementSeconds() {
+incrementTime();
+setInterval(incrementTime, 1000);
+
+function incrementTime() {
+    // Incrementing seconds
     document.getElementById("seconds").innerHTML =
         seconds < 10 ? "0" + seconds : seconds;
+
+    if (seconds == 0) {
+        minutes++;
+    }
     if (seconds > 58) {
         seconds = -1;
     }
-    seconds++;
-}
 
-function incrementMinutes() {
+    // Incrementing minutes
     document.getElementById("minutes").innerHTML =
         minutes < 10 ? "0" + minutes : minutes;
-    if (minutes > 58) {
-        minutes = -1;
+    if (minutes == 0) {
+        hours++;
     }
-    minutes++;
-}
+    if (minutes > 59) {
+        minutes = 0;
+    }
 
-function incrementHours() {
+    // Incrementing hours
     document.getElementById("hours").innerHTML =
         hours < 10 ? "0" + hours : hours;
+
+    if (hours == 12) {
+        if (document.getElementById("typography").innerHTML == "AM") {
+            document.getElementById("typography").innerHTML = "PM";
+        } else {
+            document.getElementById("typography").innerHTML = "AM";
+        }
+    }
+
     if (hours >= 12) {
         hours = 0;
     }
-    hours++;
+
+    seconds++;
 }

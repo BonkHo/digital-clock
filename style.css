@@ -21,6 +21,6 @@ body {
     grid-row: 2;
     content: "";
     text-align: center;
-    font-size: 10em;
+    font-size: 5em;
     place-self: center;
 }
